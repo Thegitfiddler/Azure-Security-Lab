@@ -17,3 +17,15 @@ module "sentinel" {
   resource_group_name = module.entra.resource_group_name
   tags                = var.tags
 }
+module "defender" {
+  source = "./modules/defender"
+
+  project                = var.project
+  environment            = var.environment
+  location               = var.location
+  resource_group_name    = module.entra.resource_group_name
+  subscription_id        = var.subscription_id
+  workspace_id           = module.sentinel.workspace_id
+  security_contact_email = var.security_contact_email
+  tags                   = var.tags
+}

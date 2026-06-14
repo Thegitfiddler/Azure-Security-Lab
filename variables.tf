@@ -41,3 +41,7 @@ variable "lab_user_password" {
   type        = string
   sensitive   = true
 }
+variable "security_contact_email" {
+  description = "Email for Defender for Cloud security alerts"
+  type        = string
+}
