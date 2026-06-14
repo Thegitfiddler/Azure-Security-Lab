@@ -1,0 +1,7 @@
+# Copy this file to terraform.tfvars and fill in your values
+# Never commit terraform.tfvars to GitHub
+
+subscription_id = "your-azure-subscription-id-here"
+location        = "East US"
+environment     = "lab"
+project         = "azure-security-lab"
