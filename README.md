@@ -2,10 +2,6 @@
 
 A production-grade Azure security lab built entirely with Terraform, demonstrating a full security engineering lifecycle across identity, detection, compliance, and DevSecOps.
 
-## Architecture
-
-![Architecture](docs/architecture.png)
-
 ## Phases
 
 ### Phase 1 — Identity & Zero Trust
@@ -88,4 +84,4 @@ terraform apply
 
 ## Author
 
-Mike Jones | [GitHub](https://github.com/Thegitfiddler) | Cloud Security Engineer
+Michael Jones | [GitHub](https://github.com/Thegitfiddler) | Cloud Security Engineer
