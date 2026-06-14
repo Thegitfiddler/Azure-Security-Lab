@@ -54,3 +54,40 @@ resource "azuread_group" "soc_analysts" {
     azuread_user.soc_analyst.object_id
   ]
 }
+# Get current subscription data
+data "azurerm_subscription" "current" {}
+
+# Security Admin - Security Reader at subscription level
+resource "azurerm_role_assignment" "security_admin_reader" {
+  scope                = data.azurerm_subscription.current.id
+  role_definition_name = "Security Reader"
+  principal_id         = azuread_group.security_admins.object_id
+}
+
+# Security Admin - Security Admin at resource group level
+resource "azurerm_role_assignment" "security_admin_rg" {
+  scope                = azurerm_resource_group.main.id
+  role_definition_name = "Security Admin"
+  principal_id         = azuread_group.security_admins.object_id
+}
+
+# Developer - Contributor at resource group level only
+resource "azurerm_role_assignment" "developer_contributor" {
+  scope                = azurerm_resource_group.main.id
+  role_definition_name = "Contributor"
+  principal_id         = azuread_group.developers.object_id
+}
+
+# SOC Analyst - Security Reader at subscription level
+resource "azurerm_role_assignment" "soc_analyst_reader" {
+  scope                = data.azurerm_subscription.current.id
+  role_definition_name = "Security Reader"
+  principal_id         = azuread_group.soc_analysts.object_id
+}
+
+# SOC Analyst - Log Analytics Reader
+resource "azurerm_role_assignment" "soc_analyst_logs" {
+  scope                = azurerm_resource_group.main.id
+  role_definition_name = "Log Analytics Reader"
+  principal_id         = azuread_group.soc_analysts.object_id
+}
